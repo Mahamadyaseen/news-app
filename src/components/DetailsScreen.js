@@ -10,7 +10,7 @@ import CardActions from "@mui/material/CardActions";
 import { CardActionArea } from "@mui/material";
 
 const DetailsScreen = () => {
-  const newsItem = useSelector((state) => state.news);
+  const newsItem = useSelector((state) => state.news.newsData);
   console.log(newsItem);
   const navigate = useNavigate();
 

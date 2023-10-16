@@ -8,15 +8,29 @@ import CardComp from "./Card";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const news = useSelector((state) => state.news);
+  const news = useSelector((state) => state.news.news);
+  const isLoading = useSelector((state) => state.news.isLoading);
+  console.log(isLoading, news);
 
   useEffect(() => {
     dispatch(fetchNews());
   }, []);
 
   return (
-    <Box sx={{ padding: 2 }}>
-      {news.length > 0 && (
+    <Box sx={{ padding: "90px 20px" }}>
+      {isLoading ? (
+        <>
+          <Grid
+            container
+            padding={3}
+            justifyContent={"center"}
+            alignItems={"center"}
+            sx={{ height: "100vh" }}
+          >
+            <h1>Loading.......</h1>
+          </Grid>
+        </>
+      ) : (
         <Grid container spacing={2}>
           {news.map((item, index) => (
             <Grid key={index} item xs={12} md={6} lg={3}>

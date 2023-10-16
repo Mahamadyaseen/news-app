@@ -23,17 +23,22 @@ export const newsData = (data) => {
 const initialState = {
   news: [],
   newsData: {},
+  isLoading: false,
 };
 
 // newsReducer.js
 const newsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "FETCH_NEWS":
+      return { ...state, isLoading: true };
     case "SET_NEWS":
       console.log(action);
-      return (state.news = action.payload.data);
+      return { ...state, news: action.payload.data, isLoading: false };
+    //   return {state.news = action.payload.data,
+    // state.isLoading=false};
     case "NEWS_DATA":
       console.log(action);
-      return (state.newsData = action.payload.data);
+      return { ...state, newsData: action.payload.data };
 
     default:
       return state;
